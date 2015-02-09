@@ -1,0 +1,24 @@
+.da-help-toggle {
+    background-color: #ab47bc;
+    text-transform: uppercase;
+    color:#f3e5f5;
+    font-size:11px;
+    position: fixed;
+    display: inline-block;
+    padding:12px 20px;
+    z-index: 10;
+    border-radius: 4px;
+    bottom:20px;
+    right:15px;
+    font-weight: 500;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+    transition: all 0.4s ease;
+}
+
+.da-help-toggle:hover {
+    color:#ffffff;
+    background-color: #8d3a9b;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
+    bottom:24px;
+}
