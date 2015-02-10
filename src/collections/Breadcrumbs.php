@@ -14,6 +14,25 @@ use yii\helpers\Html;
 /**
  * Breadcrumbs generates a Semantic UI breadcrumb collection
  *
+ * For example:
+ *
+ * ```php
+ * echo Breadcrumbs::widget([
+ *  'links' => [
+ *      [
+ *          'label' => 'Step 1',
+ *          'class' => 'mycustomclass',
+ *          'url' => '#'
+ *      ],
+ *      [
+ *          'label' => 'Step 2',
+ *          'class' => 'mycustomclass'
+ *      ],
+ *  ]
+ * ]);
+ *
+ * ```
+ *
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @link http://www.ramirezcobos.com/
  * @link http://www.2amigos.us/
@@ -44,7 +63,7 @@ class Breadcrumbs extends Widget
      * If a link is active, you only need to specify its "label", and instead of writing `['label' => $label]`,
      * you may simply use `$label`.
      *
-     * Since version 2.0.1, any additional array elements for each link will be treated as the HTML attributes
+     * Any additional array elements for each link will be treated as the HTML attributes
      * for the hyperlink tag. For example, the following link specification will generate a hyperlink
      * with CSS class `external`:
      *
@@ -63,15 +82,19 @@ class Breadcrumbs extends Widget
      */
     public $encodeLabels = true;
     /**
+     * @var string the HTML element to be used as breadcrumb divider
+     */
+    public $divider = "<div class='divider'> / </div>";
+    /**
      * @var string the template used to render each inactive item in the breadcrumbs. The tokens `{url}` and `{label}`
      * will be replaced with the actual HTML link for each inactive item.
      */
-    protected $itemTemplate = "<a class='section' href='{url}'>{label}</a>\n";
+    protected $itemTemplate = "{link}\n";
     /**
      * @var string the template used to render each active item in the breadcrumbs. The token `{link}`
      * will be replaced with the actual HTML link for each active item.
      */
-    protected $activeItemTemplate = "<a class='active section' href='{url}'>{label}</a>\n";
+    protected $activeItemTemplate = "<div class='active section'>{link}</div>\n";
 
     /**
      * @ineritdoc
@@ -108,7 +131,7 @@ class Breadcrumbs extends Widget
             }
             $links[] = $this->renderItem($link, isset($link['url']) ? $this->itemTemplate : $this->activeItemTemplate);
         }
-        echo Html::tag('div', implode('', $links), $this->options);
+        echo Html::tag('div', implode($this->divider, $links), $this->options);
     }
 
     /**
@@ -133,6 +156,7 @@ class Breadcrumbs extends Widget
         if (isset($link['url'])) {
             $options = $link;
             unset($options['template'], $options['label'], $options['url']);
+            Html::addCssClass($options, 'section');
             $link = Html::a($label, $link['url'], $options);
         } else {
             $link = $label;

@@ -1,15 +1,9 @@
 <?php
 /**
- *
- * Modal.php
- *
- * Date: 17/12/14
- * Time: 10:00
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @link http://www.ramirezcobos.com/
- * @link http://www.2amigos.us/
+ * @link https://github.com/2amigos/yii2-semantic-ui
+ * @copyright Copyright (c) 2013-2015 2amigOS! Consulting Group LLC
+ * @license http://opensource.org/licenses/BSD-3-Clause
  */
-
 namespace dosamigos\semantic\modules;
 
 
@@ -18,6 +12,41 @@ use dosamigos\semantic\Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+/**
+ * Modal renders a modal window that can be toggled by clicking on a button.
+ *
+ * The following example will show the content enclosed between the [[begin()]]
+ * and [[end()]] calls within the modal window:
+ *
+ * ```php
+ * Modal::begin([
+ *     'header' => '<h2>Hello world</h2>',
+ *     'toggleButton' => ['label' => 'click me'],
+ * ]);
+ *
+ * echo 'Say hello...';
+ *
+ * Modal::end();
+ * ```
+ *
+ * ```php
+ * Modal::begin([
+ *  'toggleButton' => ['label' => 'Show modal'],
+ *  'size' => 'fullscreen',
+ *  'type' => 'basic',
+ *  'footer' => '<div class="ui black negative button">Nope</div>' +
+ *             '<div class="ui positive right labeled icon button">Yep, that\'s me<i class="checkmark icon"></i></div>',
+ *  'clientEvents' => [
+ *      'onDeny' => 'function(){ console.log("denied");}'
+ *  ]
+ * ]);
+ * ```
+ *
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Modal extends Widget
 {
 
@@ -35,7 +64,6 @@ class Modal extends Widget
     /**
      * @var string additional header options
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     * @since 2.0.1
      */
     public $headerOptions;
     /**
@@ -45,7 +73,6 @@ class Modal extends Widget
     /**
      * @var string additional footer options
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     * @since 2.0.1
      */
     public $footerOptions;
     /**
@@ -86,6 +113,7 @@ class Modal extends Widget
      * for the supported HTML attributes.
      */
     public $toggleButton = false;
+
     /**
      * Initializes the widget.
      */
@@ -98,6 +126,7 @@ class Modal extends Widget
         echo $this->renderHeader() . "\n";
         echo $this->renderBodyBegin() . "\n";
     }
+
     /**
      * Renders the widget.
      */
@@ -108,6 +137,7 @@ class Modal extends Widget
         echo "\n" . Html::endTag('div');
         $this->registerPlugin('modal');
     }
+
     /**
      * Renders the header HTML markup of the modal
      * @return string the rendering result
@@ -121,13 +151,14 @@ class Modal extends Widget
             $this->header = Html::tag('div', "\n" . $this->header . "\n", $this->headerOptions);
         }
 
-        if($button !== null || $this->header !== null) {
+        if ($button !== null || $this->header !== null) {
             return $button . "\n" . $this->header;
         } else {
             return null;
         }
 
     }
+
     /**
      * Renders the opening tag of the modal body.
      * @return string the rendering result
@@ -136,6 +167,7 @@ class Modal extends Widget
     {
         return Html::beginTag('div', ['class' => 'content']);
     }
+
     /**
      * Renders the closing tag of the modal body.
      * @return string the rendering result
@@ -144,6 +176,7 @@ class Modal extends Widget
     {
         return Html::endTag('div');
     }
+
     /**
      * Renders the HTML markup for the footer of the modal
      * @return string the rendering result
@@ -157,6 +190,7 @@ class Modal extends Widget
             return null;
         }
     }
+
     /**
      * Renders the toggle button.
      * @return string the rendering result
@@ -182,6 +216,7 @@ class Modal extends Widget
             return null;
         }
     }
+
     /**
      * Renders the close button.
      * @return string the rendering result
@@ -194,21 +229,25 @@ class Modal extends Widget
             return null;
         }
     }
+
     /**
      * Initializes the widget options.
      * This method sets the default values for various options.
      */
     protected function initOptions()
     {
-        $this->options = array_merge([
-            'tabindex' => -1,
-        ], $this->options);
+        $this->options = array_merge(
+            [
+                'tabindex' => -1,
+            ],
+            $this->options
+        );
 
         Html::addCssClass($this->options, 'modal');
-        if($this->size !== null) {
+        if ($this->size !== null) {
             Html::addCssClass($this->options, $this->size);
         }
-        if($this->type !== null) {
+        if ($this->type !== null) {
             Html::addCssClass($this->options, $this->type);
         }
 
@@ -217,9 +256,12 @@ class Modal extends Widget
             Html::addCssClass($this->closeButton, 'close');
         }
         if ($this->toggleButton !== false && is_array($this->toggleButton)) {
-            $this->toggleButton = array_merge([
-                'data-toggle' => 'semantic-modal',
-            ], $this->toggleButton);
+            $this->toggleButton = array_merge(
+                [
+                    'data-toggle' => 'semantic-modal',
+                ],
+                $this->toggleButton
+            );
             if (!isset($this->toggleButton['data-target']) && !isset($this->toggleButton['href'])) {
                 $this->toggleButton['data-target'] = '#' . $this->options['id'];
             }

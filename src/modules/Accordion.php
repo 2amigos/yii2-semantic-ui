@@ -11,6 +11,33 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+/**
+ * Accordion renders an accordion semantic ui module.
+ *
+ * For example:
+ *
+ * ```php
+ * echo Accordion::widget([
+ *      'items' => [
+ *          [
+ *              'label' => 'Clothing',
+ *              'active' => true,
+ *              'content' => 'This is the content for clothing'
+ *          ],
+ *          [
+ *              'label' => 'Status',
+ *              'content' => 'This is the content for status'
+ *          ],
+ *      ],
+ *  ]);
+ * ```
+ *
+ * @see http://semantic-ui.com/modules/accordion.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Accordion extends Widget
 {
     /**

@@ -12,6 +12,36 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 
+/**
+ * Dropdown renders a semantic ui dropdown module
+ *
+ * For example:
+ *
+ * ```php
+ * echo Dropdown::widget([
+ *  'text' => 'Shop',
+ *  'items' => [
+ *      '<div class="header">Categories</div>',
+ *      [
+ *          'label' => 'Clothing'
+ *      ],
+ *      '<div class="divider"></div>',
+ *      '<div class="header">Order</div>',
+ *      [
+ *          'label' => 'Status',
+ *          'url' => '#'
+ *      ],
+ *  ],
+ * ]);
+ *
+ * ```
+ *
+ * @see http://semantic-ui.com/modules/dropdown.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Dropdown extends Widget
 {
     /**
@@ -51,7 +81,13 @@ class Dropdown extends Widget
      * @var string displays the dropdown caret icon. Set to false if you do not want to show a dropdown caret icon.
      */
     public $icon = '<i class="dropdown icon"></i>';
+    /**
+     * @var bool whether to display the search in dropdown input
+     */
     public $displaySearchInput = false;
+    /**
+     * @var array the HTML attributes of the search input as name-value pairs.
+     */
     public $searchInputOptions = [];
 
     /**
@@ -74,6 +110,12 @@ class Dropdown extends Widget
         $this->registerPlugin('dropdown');
     }
 
+    /**
+     * Renders the dropdown
+     *
+     * @return string the generated dropdown module
+     * @throws InvalidConfigException
+     */
     protected function renderDropdown()
     {
         $lines = [];
@@ -143,6 +185,11 @@ class Dropdown extends Widget
 
     }
 
+    /**
+     * Renders the search input
+     *
+     * @return string the generated search input
+     */
     protected function renderSearchInput()
     {
         $lines = [];

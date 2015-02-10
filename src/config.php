@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
 /**
- * Translation configuration for Yii2
+ * Translation configuration for Yii2. We leave this file so you don't have to go through this process again.
  */
 return [
     // string, required, root directory of all source files
