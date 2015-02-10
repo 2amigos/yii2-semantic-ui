@@ -6,6 +6,7 @@
  */
 namespace dosamigos\semantic\collections;
 
+use dosamigos\semantic\modules\Dropdown;
 use Yii;
 use dosamigos\semantic\Widget;
 use yii\base\InvalidConfigException;
@@ -13,7 +14,29 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * Menu
+ * Menu renders a Menu collection.
+ *
+ * For example
+ *
+ * ```php
+ * echo Menu::widget([
+ *  'items' => [
+ *      Html::tag('div', 'Cat University', ['class' => 'header item']),
+ *      [ 'label' => 'Menu A', 'url' => ['/menu-a']],
+ *      [ 'label' => 'Menu B', 'url' => ['/menu-b']],
+ *      [ 'label' => 'Only label'],
+ *      [
+ *          'label' => 'Menu C',
+ *          'options' => [ 'class' => 'right' ],
+ *          'items' => [
+ *              [ 'label' => 'Menu C-A', 'url' => ['/menu-ca']],
+ *              [ 'label' => 'Menu C-B', 'url' => ['/menu-cb']],
+ *              [ 'label' => 'Only label' ],
+ *          ]
+ *      ],
+ *  ]
+ * ]);
+ * ```
  *
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @link http://www.ramirezcobos.com/
@@ -33,7 +56,7 @@ class Menu extends Widget
      * - options: array, optional, the HTML attributes of the item container (LI).
      * - active: boolean, optional, whether the item should be on active state or not.
      * - items: array|string, optional, the configuration array for creating a [[Dropdown]] widget,
-     *   or a string representing the dropdown menu.
+     *   or a string representing the dropdown menu. Note that Bootstrap does not support sub-dropdown menus.
      *
      * If a menu item is a string, it will be rendered directly without HTML encoding.
      */
@@ -82,7 +105,6 @@ class Menu extends Widget
         Html::addCssClass($this->options, 'menu');
     }
 
-
     /**
      * @inheritdoc
      */
@@ -130,13 +152,9 @@ class Menu extends Widget
         if (!isset($item['label'])) {
             throw new InvalidConfigException("The 'label' option is required.");
         }
-        $items = ArrayHelper::getValue($item, 'items');
-        if ($items !== null) {
-            return $this->renderMenu($items, $item);
-        }
+        $options = ArrayHelper::getValue($item, 'options', []);
 
         $label = $this->getLabel($item);
-        $options = ArrayHelper::getValue($item, 'options', []);
         $url = ArrayHelper::getValue($item, 'url', '#');
 
         if (isset($item['active'])) {
@@ -149,7 +167,20 @@ class Menu extends Widget
             Html::addCssClass($options, 'active');
         }
         Html::addCssClass($options, 'item');
-        return Html::a($label, $url, $options);
+
+        $items = ArrayHelper::getValue($item, 'items');
+        if ($items !== null) {
+            return Dropdown::widget(
+                [
+                    'encodeText' => false,
+                    'text' => $label,
+                    'items' => $items,
+                    'options' => $options
+                ]
+            );
+        } else {
+            return Html::a($label, $url, $options);
+        }
     }
 
     /**
@@ -178,15 +209,15 @@ class Menu extends Widget
     }
 
     /**
-     * Returns the label of an item
+     * Returns the label
      *
-     * @param array $item
+     * @param array $item the item configuration
      *
      * @return string the label
      */
     protected function getLabel($item)
     {
-        $encodeLabel = ArrayHelper::getValue($item, 'encode', $this->encodeLabels);
+        $encodeLabel = isset($item['encode']) ? $item['encode'] : $this->encodeLabels;
         return $encodeLabel ? Html::encode($item['label']) : $item['label'];
     }
 
@@ -245,5 +276,4 @@ class Menu extends Widget
         }
         return false;
     }
-
 }
