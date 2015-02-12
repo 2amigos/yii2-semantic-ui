@@ -53,7 +53,7 @@ class Menu extends Widget
      * - url: optional, the item's URL. Defaults to "#".
      * - visible: boolean, optional, whether this menu item is visible. Defaults to true.
      * - linkOptions: array, optional, the HTML attributes of the item's link.
-     * - options: array, optional, the HTML attributes of the item container (LI).
+     * - options: array, optional, the HTML attributes of the item container.
      * - active: boolean, optional, whether the item should be on active state or not.
      * - items: array|string, optional, the configuration array for creating a [[Dropdown]] widget,
      *   or a string representing the dropdown menu. Note that Bootstrap does not support sub-dropdown menus.
@@ -191,7 +191,6 @@ class Menu extends Widget
      * @param array $parentItem the parent item information. Please refer to [[items]] for the structure of this array.
      *
      * @return string the rendering result.
-     * @since 2.0.1
      */
     protected function renderMenu($items, $parentItem)
     {

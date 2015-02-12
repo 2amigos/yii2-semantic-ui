@@ -11,7 +11,30 @@ use dosamigos\semantic\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use dosamigos\semantic\helpers\Ui;
 
+/**
+ * Shape generates a semantic ui shape module. A three dimensional object displayed on a two dimensional plane.
+ *
+ * For example
+ *
+ * ```php
+ * echo Shape::widget([
+ *  'sides' => [
+ *      ['content' => 'This side starts visible', 'active' => true], // first visible step
+ *      ['content' => 'This is another ONEEEE'],
+ *      ['content' => 'And ANOTHEEEER!']
+ *  ]
+ * ]);
+ *
+ * ```
+ *
+ * @see http://semantic-ui.com/modules/shape.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Shape extends Widget
 {
 
@@ -20,6 +43,7 @@ class Shape extends Widget
      * following structure:
      *
      * - content: string, required, the HTML content of the side
+     * - active: boolean, optional, whether this side should be active or not
      * - options: array, optional, the HTML attributes of the side item.
      */
     public $sides = [];
@@ -29,6 +53,9 @@ class Shape extends Widget
      */
     public $sidesOptions = [];
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
@@ -36,6 +63,10 @@ class Shape extends Widget
         Html::addCssClass($this->sidesOptions, 'sides');
     }
 
+    /**
+     * @inheritdoc
+     * @throws InvalidConfigException
+     */
     public function run()
     {
         $lines = [];
@@ -47,15 +78,29 @@ class Shape extends Widget
         $this->registerPlugin('shape');
     }
 
+    /**
+     * Renders the configured sides
+     *
+     * @param array $sides @see $sides
+     *
+     * @return string the generated shape sides
+     * @throws InvalidConfigException
+     */
     protected function renderSides($sides)
     {
         $lines = [];
-        $lines[] = Html::beginTag('div', '', $this->sidesOptions);
+        $lines[] = Html::beginTag('div', $this->sidesOptions);
         foreach($sides as $side) {
             if(!array_key_exists('content', $side)) {
                 throw new InvalidConfigException("The 'content' option is required per sides");
             }
-            $lines[] = Html::tag('div', $side['content'], ArrayHelper::getValue($side, 'options', []));
+            $options = ArrayHelper::getValue($side, 'options', []);
+            Ui::addCssClass($options, 'side');
+            $active = ArrayHelper::getValue($side, 'active', false);
+            if($active === true) {
+                Ui::addCssClass($options, 'active');
+            }
+            $lines[] = Html::tag('div', $side['content'], $options);
 
         }
         $lines[] = Html::endTag('div');

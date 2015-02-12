@@ -9,6 +9,14 @@ namespace dosamigos\semantic\modules;
 use dosamigos\semantic\Widget;
 use yii\helpers\Html;
 
+/**
+ * Progress renders a progress semantic ui module
+ *
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Progress extends Widget
 {
 

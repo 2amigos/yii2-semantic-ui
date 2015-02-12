@@ -6,17 +6,33 @@
  */
 namespace dosamigos\semantic\modules;
 
-
 use yii\helpers\Html;
 
+/**
+ * Radio generates a radio box semantic ui form element
+ *
+ * @see http://semantic-ui.com/collections/form.html#radio-box
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Radio extends Checkbox
 {
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
         Html::addCssClass($this->wrapperOptions, 'radio');
     }
 
+    /**
+     * Generates the Radio input
+     *
+     * @return string the generated radio input tag
+     */
     protected function renderInput()
     {
         return $this->hasModel()

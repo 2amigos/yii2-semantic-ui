@@ -10,6 +10,52 @@ namespace dosamigos\semantic\modules;
 use dosamigos\semantic\InputWidget;
 use yii\helpers\Html;
 
+/**
+ * Search generates a semantic ui search module
+ * For example
+ *
+ * ```php
+ *
+ * // with local source
+ * echo Search::widget([
+ *  'name' => 'basic-test',
+ *  'inputOptions' => ['placeholder' => 'Animals...'],
+ *  'clientOptions' => [
+ *      'type' => 'standard',
+ *      'source' => [
+ *          ['title' => 'Horse', 'description' => 'An Animal'],
+ *          ['title' => 'Cow', 'description' => 'Another Animal']
+ *      ],
+ *      'searchFields' => ['title'],
+ *      'searchFullText' => false
+ *  ]
+ * ]);
+ *
+ *
+ * // with remote source
+ * $uri = \yii\helpers\Url::to(['site/search']) . '&q={query}';
+ * echo Search::widget([
+ *  'name' => 'category-test',
+ *  'type' => Search::TYPE_CATEGORY,
+ *  'inputOptions' => ['placeholder' => 'Animals...'],
+ *  'options' => [
+ *      'class' => 'fluid'
+ *  ],
+ *  'clientOptions' => [
+ *      'apiSettings' => [
+ *          'action' => 'search',
+ *          'url' => $uri
+ *      ],
+ *      'searchFullText' => false
+ *  ]
+ * ]);
+ * ```
+ *
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Search extends InputWidget
 {
     const TYPE_STANDARD = 'standard';
@@ -29,6 +75,9 @@ class Search extends InputWidget
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $resultsOptions = [];
+    /**
+     * @var string the type of search. It could be of type 'category' or 'standard'
+     */
     public $type = self::TYPE_STANDARD;
 
     /**
@@ -56,6 +105,14 @@ class Search extends InputWidget
         $this->registerPlugin('search');
     }
 
+    /**
+     * Generates the search input
+     *
+     * @param array $options the tag options in terms of name-value pairs
+     * @param array $resultsOptions the results layer options in terms of name-value pairs
+     *
+     * @return string the generated search input
+     */
     protected function renderInput($options = [], $resultsOptions = [])
     {
         Html::addCssClass($options, 'prompt');

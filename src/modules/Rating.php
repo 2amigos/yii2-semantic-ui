@@ -6,11 +6,28 @@
  */
 namespace dosamigos\semantic\modules;
 
-
 use dosamigos\semantic\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
+/**
+ * Rating generates a rating semantic ui module
+ *
+ * For example
+ *
+ * ```php
+ * echo Rating::widget([
+ *  'rating' => 2,
+ *  'options' => ['class' => 'star']
+ * ]);
+ * ```
+ *
+ * @see http://semantic-ui.com/modules/rating.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Rating extends Widget
 {
     const SIZE_MINI = 'mini';
@@ -35,26 +52,32 @@ class Rating extends Widget
      */
     public $size = self::SIZE_DEFAULT;
 
+    /**
+     * @inheritdoc
+     * @throws InvalidConfigException
+     */
     public function init()
     {
-        if($this->max <= 0) {
+        if ($this->max <= 0) {
             throw new InvalidConfigException("Max rating number cannot be less or equal to 0.");
         }
-        if($this->rating !== null) {
-            if($this->rating > $this->max)
-            {
+        if ($this->rating !== null) {
+            if ($this->rating > $this->max) {
                 throw new InvalidConfigException("Rating number cannot be higher than Max rating number.");
             }
             $this->options['data-rating'] = $this->rating;
         }
         $this->options['data-max-rating'] = $this->max;
-        if(!empty($this->size)) {
+        if (!empty($this->size)) {
             Html::addCssClass($this->options, $this->size);
         }
         Html::addCssClass($this->options, 'rating');
         parent::init();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         echo Html::tag('div', '', $this->options);

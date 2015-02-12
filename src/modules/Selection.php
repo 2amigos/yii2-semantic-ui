@@ -12,6 +12,26 @@ use yii\helpers\Html;
 use yii\widgets\InputWidget;
 use Yii;
 
+/**
+ * Selection generates a semantic ui selection list
+ * For example
+ *
+ * ```php
+ * echo Selection::widget([
+ *  'name' => 'test-selection',
+ *  'items' => [
+ *      'value1' => [ 'label' => 'Value 1' ],
+ *      'value2' => [ 'label' => 'Value 2' ]
+ *  ]
+ * ]);
+ * ```
+ *
+ * @see http://semantic-ui.com/collections/form.html#selection-dropdown
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Selection extends InputWidget
 {
     /**
@@ -78,6 +98,9 @@ class Selection extends InputWidget
         Html::addCssClass($this->options, 'selection');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         $input = $this->hasModel()

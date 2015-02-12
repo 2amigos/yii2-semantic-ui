@@ -82,7 +82,7 @@ class Message extends Widget
     /**
      * Renders the close button and its header (if any)
      *
-     * @return string
+     * @return string the begin of the body
      */
     public function renderBodyBegin()
     {
@@ -97,7 +97,7 @@ class Message extends Widget
 
     /**
      * Renders the body (if any) and the final closing tags of the message
-     * @return string
+     * @return string the end of the message's body
      */
     public function renderBodyEnd()
     {
