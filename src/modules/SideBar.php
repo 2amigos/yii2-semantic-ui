@@ -13,6 +13,50 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+/**
+ * SideBar renders a Semantic UI sidebar
+ *
+ * For example
+ *
+ * ```php
+ * echo SideBar::widget([
+ *  'position' => 'left',
+ *  'toggleButton' => [
+ *      'style' => 'top:54px'
+ *  ],
+ *  'options' => [
+ *      // 'class' => 'icon'
+ *  ],
+ * 'items' => [
+ *      [
+ *          'label' => '<i class="block layout icon"></i>Topics',
+ *          'encode' => false
+ *      ],
+ *      [
+ *          'label' => 'Elements',
+ *          'encode' => false,
+ *          'items' => [
+ *              [
+ *                  'label' => '<i class="block layout icon"></i>Topics',
+ *                  'encode' => false
+ *              ],
+ *              [
+ *                  'label' => '<i class="block layout icon"></i>Topics',
+ *                  'encode' => false
+ *              ],
+ *          ]
+ *      ]
+ *  ]
+ * ]);
+ *
+ * ``
+ *
+ * @see http://semantic-ui.com/modules/sidebar.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class SideBar extends Menu
 {
     const POS_TOP = 'top';
@@ -21,6 +65,9 @@ class SideBar extends Menu
     const POS_RIGHT = 'right';
     const POS_DEFAULT = '';
 
+    /**
+     * @var string where to position the sidebar menu
+     */
     public $position = self::POS_DEFAULT;
     /**
      * @var array the options for rendering the toggle button tag.
@@ -36,6 +83,9 @@ class SideBar extends Menu
      */
     public $toggleButton = [];
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         Html::addCssClass($this->options, $this->position);
@@ -44,6 +94,9 @@ class SideBar extends Menu
         parent::init();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         parent::run();
@@ -51,18 +104,23 @@ class SideBar extends Menu
         $this->registerPlugin('sidebar');
     }
 
+    /**
+     * Generates the toggle button. The one that 'on-click', shows the sidebar.
+     *
+     * @return null|string the generated toggle button
+     */
     public function renderToggleButton()
     {
-        if($this->toggleButton !== false) {
+        if ($this->toggleButton !== false) {
             $tag = ArrayHelper::remove($this->toggleButton, 'tag', 'div');
-            $label = ArrayHelper::remove($this->toggleButton, 'label', Html::tag('i','', ['class' =>'content icon']));
+            $label = ArrayHelper::remove($this->toggleButton, 'label', Html::tag('i', '', ['class' => 'content icon']));
 
             Html::addCssClass($this->toggleButton, 'ui');
             Html::addCssClass($this->toggleButton, 'launch-sidebar icon');
             Html::addCssClass($this->toggleButton, 'button');
             Html::addCssClass($this->toggleButton, 'fixed');
             Html::addCssClass($this->toggleButton, 'attached');
-            if($this->position === static::POS_LEFT) {
+            if ($this->position === static::POS_LEFT) {
                 $position = static::POS_RIGHT;
             } else {
                 $position = static::POS_LEFT;

@@ -117,7 +117,7 @@ class Breadcrumbs extends Widget
         if ($this->homeLink === null) {
             $links[] = $this->renderItem(
                 [
-                    'label' => Yii::t('yii', 'Home'),
+                    'label' => Yii::t('dosamigos/semantic/breadcrumbs', 'Home'),
                     'url' => Yii::$app->homeUrl,
                 ],
                 $this->itemTemplate

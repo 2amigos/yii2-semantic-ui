@@ -1,4 +1,5 @@
-.da-help-toggle {
+/** Start toggle fixed bottom button **/
+.da-fixed-bottom-button-toggle {
     background-color: #ab47bc;
     text-transform: uppercase;
     color:#f3e5f5;
@@ -16,9 +17,10 @@
     transition: all 0.4s ease;
 }
 
-.da-help-toggle:hover {
+.da-fixed-bottom-button-toggle:hover {
     color:#ffffff;
     background-color: #8d3a9b;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
     bottom:24px;
 }
+/** End toggle fixed bottom button **/

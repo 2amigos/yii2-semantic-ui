@@ -6,15 +6,47 @@
  */
 namespace dosamigos\semantic\modules;
 
-
 use dosamigos\semantic\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
+/**
+ * Sticky Generates a semantic ui sticky module
+ * For example
+ *
+ * ```php
+ * echo Sticky::widget([
+ *  'context' => '#examples',
+ *  'content' => 'Hello, I am sticky',
+ *  'clientOptions' => [
+ *      'offset' => 50,
+ *      'bottomOffset' => 50
+ *  ]
+ * ]);
+ *
+ * ```
+ *
+ * @see http://semantic-ui.com/modules/sticky.html
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @link http://www.ramirezcobos.com/
+ * @link http://www.2amigos.us/
+ * @package dosamigos\semantic\modules
+ */
 class Sticky extends Widget
 {
+    /**
+     * @var string the jQuery element id to stick to
+     */
     public $context;
+    /**
+     * @var string the content of the sticky
+     */
     public $content;
+
+    /**
+     * @inheritdoc
+     * @throws InvalidConfigException
+     */
     public function init()
     {
         parent::init();
@@ -29,6 +61,9 @@ class Sticky extends Widget
         Html::addCssClass($this->options, 'rail');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         echo Html::beginTag('div', $this->options);

@@ -6,13 +6,20 @@
  */
 /**
  * Translation configuration for Yii2. We leave this file so you don't have to go through this process again.
+ *
+ * If you wish to add your language, do the following:
+ *
+ * - cd path/to/extension/on/your/computer
+ * - composer install
+ * - cd vendor/yiisoft/yii2/
+ * - ./yii message/extract ~/path/to/extension/on/your/computer/src/config.php
  */
 return [
     // string, required, root directory of all source files
     'sourcePath' => __DIR__,
     // array, required, list of language codes that the extracted messages
     // should be translated to. For example, ['zh-CN', 'de'].
-    'languages' => ['en','es'],
+    'languages' => ['en', 'es'],
     // string, the name of the function for translating messages.
     // Defaults to 'Yii::t'. This is used as a mark to find the messages to be
     // translated. You may use a string for single function name or an array for
@@ -47,15 +54,12 @@ return [
         '.hgkeep',
         '/messages',
     ],
-
     // 'php' output format is for saving messages to php files.
     'format' => 'php',
     // Root directory containing message translations.
     'messagePath' => __DIR__ . DIRECTORY_SEPARATOR . 'messages',
     // boolean, whether the message file should be overwritten with the merged messages
     'overwrite' => true,
-
-
     /*
     // 'db' output format is for saving messages to database.
     'format' => 'db',
