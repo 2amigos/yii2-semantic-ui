@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/travis/2amigos/yii2-semantic-ui/master.svg?style=flat-square)](https://travis-ci.org/2amigos/yii2-semantic-ui)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/2amigos/yii2-semantic-ui.svg?style=flat-square)](https://scrutinizer-ci.com/g/2amigos/yii2-semantic-ui/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/2amigos/yii2-semantic-ui.svg?style=flat-square)](https://scrutinizer-ci.com/g/2amigos/yii2-semantic-ui)
-[![Total Downloads](https://img.shields.io/packagist/dt/league/yii2-semantic-ui.svg?style=flat-square)](https://packagist.org/packages/2amigos/yii2-semantic-ui)
+[![Total Downloads](https://img.shields.io/packagist/dt/2amigos/yii2-semantic-ui.svg?style=flat-square)](https://packagist.org/packages/2amigos/yii2-semantic-ui)
 
 
 This is the Semantic UI extension for Yii2. It encapsulates Semantic UI components and plugins in terms of Yii widgets 
