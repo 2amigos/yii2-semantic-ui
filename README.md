@@ -18,13 +18,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```sh
-php composer.phar require --prefer-dist 2amigos/yii2-taggable-behavior "*"
+php composer.phar require --prefer-dist "2amigos/yii2-semantic-ui": "1.0.*@dev" "*"
 ```
 
 or add
 
 ```json
-"2amigos/yii2-taggable-behavior": "*"
+""2amigos/yii2-semantic-ui": "1.0.*@dev"": "*"
 ```
 
 to the require section of your `composer.json` file. 
