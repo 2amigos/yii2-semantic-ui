@@ -18,30 +18,62 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```sh
-php composer.phar require --prefer-dist "2amigos/yii2-semantic-ui": "1.0.*@dev" "*"
+php composer.phar require --prefer-dist "2amigos/yii2-semantic-ui": "*"
 ```
 
 or add
 
 ```json
-""2amigos/yii2-semantic-ui": "1.0.*@dev"": "*"
+""2amigos/yii2-semantic-ui": "*"
 ```
 
 to the require section of your `composer.json` file. 
 
 ## Usage
 
-There are many plugins
+We are in the process of building a site for this extensions in the meantime, for example, making use of the `Dropdown` 
+module widget with a search-in menu feature is as follows:
 
 ``` php
-
+echo Dropdown::widget([
+    'encodeText' => false,
+    'text' => '<i class="filter icon"></i><span class="text">Filter posts</span>',
+    'icon' => false,
+    'displaySearchInput' => true,
+    'encodeItemLabels' => false,
+    'items' => [
+        '<div class="header"><i class="tags icon"></i>Tag Label</div>',
+        ['label' => '<div class="ui red empty circular label"></div>Important'],
+        ['label' => '<div class="ui blue empty circular label"></div>Announcement']
+    ],
+    'options' => [
+        'class' => 'floating labeled search icon button'
+    ],
+]
+);
 ```
 
-## Testing
+## Testing  
 
-``` bash
+To test the extension, is better to clone this repository on your computer. After, go to the extensions folder and do
+the following (asumming you have `composer` installed on your computer: 
+
+``` bash 
+$ composer install --no-interaction --prefer-source --dev
+```
+Once all required libraries are installed then do: 
+
+```bash 
 $ phpunit
 ```
+
+You can also run tests for specific groups only: 
+
+```bash 
+$ phpunit --group=helpers,modules
+``` 
+You can get a list of available groups via `phpunit --list-groups`.
+
 
 ## Contributing
 
@@ -57,5 +89,5 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 The BSD License (BSD). Please see [License File](LICENSE.md) for more information.
 
 > [![2amigOS!](http://www.gravatar.com/avatar/55363394d72945ff7ed312556ec041e0.png)](http://www.2amigos.us)  
-<i>web development has never been so fun</i>
+<i>web development has never been so fun</i>  
 [www.2amigos.us](http://www.2amigos.us)
