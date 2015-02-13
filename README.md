@@ -8,17 +8,30 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/league/yii2-semantic-ui.svg?style=flat-square)](https://packagist.org/packages/2amigos/yii2-semantic-ui)
 
 
-TODO
+This is the Semantic UI extension for Yii2. It encapsulates Semantic UI components and plugins in terms of Yii widgets 
+and helper classes, easing the usage of Semantic UI components/plugins into Yii applications.
 
 ## Install
 
-Via Composer
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-``` bash
-$ composer require 2amigos/yii2-semantic-ui
+Either run
+
+```sh
+php composer.phar require --prefer-dist 2amigos/yii2-taggable-behavior "*"
 ```
 
+or add
+
+```json
+"2amigos/yii2-taggable-behavior": "*"
+```
+
+to the require section of your `composer.json` file. 
+
 ## Usage
+
+There are many plugins
 
 ``` php
 
@@ -43,6 +56,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 The BSD License (BSD). Please see [License File](LICENSE.md) for more information.
 
-> [![2amigOS!](http://www.gravatar.com/avatar/55363394d72945ff7ed312556ec041e0.png)](http://www.2amigos.us)
+> [![2amigOS!](http://www.gravatar.com/avatar/55363394d72945ff7ed312556ec041e0.png)](http://www.2amigos.us)  
 <i>web development has never been so fun</i>
 [www.2amigos.us](http://www.2amigos.us)
