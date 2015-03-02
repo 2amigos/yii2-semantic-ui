@@ -56,7 +56,7 @@ echo Dropdown::widget([
 ## Testing  
 
 To test the extension, is better to clone this repository on your computer. After, go to the extensions folder and do
-the following (asumming you have `composer` installed on your computer: 
+the following (assuming you have `composer` installed on your computer: 
 
 ``` bash 
 $ composer install --no-interaction --prefer-source --dev
