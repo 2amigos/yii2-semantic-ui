@@ -24,7 +24,7 @@ php composer.phar require --prefer-dist "2amigos/yii2-semantic-ui": "*"
 or add
 
 ```json
-""2amigos/yii2-semantic-ui": "*"
+"2amigos/yii2-semantic-ui": "*"
 ```
 
 to the require section of your `composer.json` file. 
