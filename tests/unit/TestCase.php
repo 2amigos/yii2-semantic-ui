@@ -38,6 +38,12 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $this->destroyApplication();
     }
 
+    /**
+     * Mocks a Yii application
+     *
+     * @param array $config
+     * @param string $appClass
+     */
     protected function mockApplication($config = [], $appClass = '\yii\console\Application')
     {
         new $appClass(
@@ -52,22 +58,38 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Mocks a Yii web application
+     *
+     * @param array $config
+     * @param string $appClass
+     */
     protected function mockWebApplication($config = [], $appClass = '\yii\web\Application')
     {
-        new $appClass(ArrayHelper::merge([
-            'id' => 'testapp',
-            'basePath' => __DIR__,
-            'vendorPath' => $this->getVendorPath(),
-            'components' => [
-                'request' => [
-                    'cookieValidationKey' => 'wefJDF8sfdsfSDefwqdxj9oq',
-                    'scriptFile' => __DIR__ .'/index.php',
-                    'scriptUrl' => '/index.php',
+        new $appClass(
+            ArrayHelper::merge(
+                [
+                    'id' => 'testapp',
+                    'basePath' => __DIR__,
+                    'vendorPath' => $this->getVendorPath(),
+                    'components' => [
+                        'request' => [
+                            'cookieValidationKey' => 'wefJDF8sfdsfSDefwqdxj9oq',
+                            'scriptFile' => __DIR__ . '/index.php',
+                            'scriptUrl' => '/index.php',
+                        ],
+                    ]
                 ],
-            ]
-        ], $config));
+                $config
+            )
+        );
     }
 
+    /**
+     * Returns the vendor path
+     *
+     * @return string
+     */
     protected function getVendorPath()
     {
         return dirname(dirname(__DIR__)) . '/vendor';

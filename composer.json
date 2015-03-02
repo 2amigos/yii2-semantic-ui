@@ -9,7 +9,7 @@
         "yii2-semantic-ui"
     ],
     "homepage": "https://github.com/2amigos/yii2-semantic-ui",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "2amigOS! Consulting Group",
